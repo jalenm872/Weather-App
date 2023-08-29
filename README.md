@@ -1,18 +1,18 @@
 # Weather-App
- My own version of a weather app using an OpenWeather API's
-
+ My own version of a weather app using an OpenWeather One Call API and Geocoding API
 
 ## What I learned
 I learned the basics of HTML, CSS, and JS. I also learned how to use an api to get data to show on a website.
 
 HTMl:
-Learned how to set up a live server so I can see my changes in real time
+Learned how to set up a live server so I can see my changes in real time. (Live Sever Extension on VS Code)
 
 CSS:
 Learned how to style my website using CSS
 With the live server, I can see my changes in real time
 
 JS:
+Learned how to use JS to get data from an API
 
 API:
 One Call API 3.0
