@@ -19,15 +19,14 @@ One Call API 3.0
 Geocoding API
 
 ## What I used
-I used HTML, CSS, and JS to create this website. I also used an API to get the weather data.
+I used HTML, CSS, and JS to create this website. I also used API's to get geolaction and the weather data.
 
 ## What I want to add
 
 Different backgrounds depending on the weather
-Add a search bar to search for different cities
+Get user location
+Cookies to save user location
+Default location if user doesn't allow location
 Add a 5 day forecast
-Add a map to show where the city is located
 Add a button to change from Fahrenheit to Celsius
 Add a button to change from light mode to dark mode
-Add a button to change the language
-Add a button to change the units
