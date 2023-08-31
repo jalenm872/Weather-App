@@ -31,6 +31,7 @@ function getWeather(lat, lon) {
     .then(response => {
         // handle the response
         if(response.ok) {
+            console.log("Hello");
             return response.json();
         } else {
             throw new Error("Something went wrong");
@@ -38,7 +39,14 @@ function getWeather(lat, lon) {
     })
     .then(data => {
         // handle the data
-        console.log(data);
+        //console.log(data);
+        let name = data.name;
+        let temp = data.current.temp;
+        let discription = data.current.weather[0].description;
+        let humidity = data.current.humidity;
+        let windSpeed = data.current.wind_speed;
+        console.log(name, temp, discription, humidity, windSpeed);
+        // Update the weather data
     })
     .catch(error => {
         // handle the error
