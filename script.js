@@ -23,10 +23,10 @@ function getLatLon() {
     });
 }
 
-function getWeather(lat, lon) {
+function getWeather(lat, lon, name) {
     // API call to get the weather data
     fetch(
-        "https://api.openweathermap.org/data/3.0/onecall?lat="+lat+"&lon="+lon+"&exclude={part}&appid=b222be32564b5a976119b9aed1c84a8d"
+        "https://api.openweathermap.org/data/3.0/onecall?lat="+lat+"&lon="+lon+"&units=metric&appid=b222be32564b5a976119b9aed1c84a8d"
     )
     .then(response => {
         // handle the response
@@ -39,14 +39,18 @@ function getWeather(lat, lon) {
     })
     .then(data => {
         // handle the data
-        //console.log(data);
-        let name = data.name;
+        console.log(data);
         let temp = data.current.temp;
         let discription = data.current.weather[0].description;
         let humidity = data.current.humidity;
         let windSpeed = data.current.wind_speed;
         console.log(name, temp, discription, humidity, windSpeed);
         // Update the weather data
+        document.querySelector(".city-name").innerText = name;
+        document.querySelector(".city-temp").innerText = temp + "°C";
+        document.querySelector(".city-description").innerText = discription;
+        document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
+        document.querySelector(".wind").innerText = windSpeed + " km/h";
     })
     .catch(error => {
         // handle the error
@@ -76,7 +80,9 @@ function updateWeather(){
         let lon = data[0].lon;
         // console.log(lat);
         // console.log(lon);
-        getWeather(lat, lon);
+        let name = data[0].name;
+        //console.log(name);
+        getWeather(lat, lon, name);
     })
     .catch(error => {
         // handle the error
