@@ -1,3 +1,23 @@
+
+// If the user allows the location access, run the sucessCallback function
+const sucessCallback = (position) => {
+    console.log(position);
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude; 
+    //Run the getWeather function
+    getWeather(lat, lon);
+}
+
+// If the user denies the location access, run the errorCallback function
+const errorCallback = (error) => {
+    console.log(error);
+    // Run the getWeather function of the default city (New York, USA)
+    getWeather(40.714, -74.006, "New York City, USA");
+}   
+
+// Get the current location of the user
+navigator.geolocation.getCurrentPosition(sucessCallback, errorCallback);
+
 let searchButton = document.querySelector(".search-button");
 searchButton.addEventListener("click", updateWeather);
 
@@ -23,6 +43,7 @@ function getLatLon() {
     });
 }
 
+// Function to get the weather data
 function getWeather(lat, lon, name) {
     // API call to get the weather data
     fetch(
@@ -31,7 +52,6 @@ function getWeather(lat, lon, name) {
     .then(response => {
         // handle the response
         if(response.ok) {
-            console.log("Hello");
             return response.json();
         } else {
             throw new Error("Something went wrong");
@@ -41,6 +61,7 @@ function getWeather(lat, lon, name) {
         // handle the data
         console.log(data);
         let temp = data.current.temp;
+        temp = Math.round(temp);
         let discription = data.current.weather[0].description;
         let humidity = data.current.humidity;
         let windSpeed = data.current.wind_speed;
@@ -51,6 +72,7 @@ function getWeather(lat, lon, name) {
         document.querySelector(".city-description").innerText = discription;
         document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
         document.querySelector(".wind").innerText = windSpeed + " km/h";
+        document.querySelector(".search-bar").value = "";
     })
     .catch(error => {
         // handle the error
@@ -58,7 +80,7 @@ function getWeather(lat, lon, name) {
     });
 }
 
-
+// Function to update the weather data on search
 function updateWeather(){
     // Get the value of the search input
     let searchInput = document.querySelector(".search-bar").value;
@@ -78,10 +100,10 @@ function updateWeather(){
         // handle the data
         let lat = data[0].lat;
         let lon = data[0].lon;
-        // console.log(lat);
-        // console.log(lon);
-        let name = data[0].name;
-        //console.log(name);
+        let city = data[0].name
+        let state = data[0].state;
+        let country = data[0].country;
+        let name = city + ", " + state + ", " + country;
         getWeather(lat, lon, name);
     })
     .catch(error => {
@@ -89,6 +111,3 @@ function updateWeather(){
         console.log(error);
     });
 }
-
-
-
